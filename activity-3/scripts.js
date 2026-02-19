@@ -1,8 +1,7 @@
-
-
 console.log("---Activity 3: Dynamic Greeting Card---");
 console.log("---Dom selection demonstrations---");
 
+//selects an html element by its id attribute
 const greetingMessage = document.getElementById("greeting-message");
 const greetingImage = document.getElementById("greeting-image");
 const nameInput = document.getElementById("nameInput");
@@ -11,26 +10,32 @@ console.log("Selected greeting message element: ", greetingMessage);
 console.log("Selected image element: ", greetingImage);
 console.log("Selected name: ", nameInput);
 
+//selects the first element that matches css selector
 const cardContainer = document.querySelector(".card-container");
 const firstButton = document.querySelector("button");
 
 console.log("Selected card container: ", cardContainer);
-console.log("First Button: ", firstButton)
+console.log("First Button: ", firstButton);
 
+//selects all elements that match selector. returns list
 const allButtons = document.querySelectorAll("button");
 
 console.log(`Found ${allButtons.length} buttons: `, allButtons);
 
 console.log("\n---Content modification examples---");
 
+//textContent gets text inside an element
 console.log("Original message textContent: ", greetingMessage.textContent);
+//getAttribute retrieves value of a specific attribute on an element
 console.log("Original image alt attribute: ", greetingImage.getAttribute("alt"));
 
 console.log("\n---Attribute modification demonstration---");
 
 console.log("Current image src: ", greetingImage.getAttribute("src"));
+//hasAttribute checks if an element has a specific attribute. returns true or false
 console.log("Image has src attribute: ", greetingImage.hasAttribute("src"));
 
+//object storing all greeting templates
 const greetings = {
     birthday: {
         message: "Happy Birthday!",
@@ -39,30 +44,33 @@ const greetings = {
     },
     holiday: {
         message: "Happy Holidays!",
-        image: "holiday.jpg",
+        image: "holiday.avif",
         alt: "Holiday picture"
     },
     thankYou: {
         message: "Thank You!",
-        image: "thank-you.jpg",
+        image: "thank-you.avif",
         alt: "Thank you picture"
     },
     welcome: {
         message: "Welcome!",
-        image: "welcome.jpg",
+        image: "welcome.avif",
         alt: "Welcome picture"
     }
 };
 
 console.log("\n--Greeting card functions");
 
-
+//updates page with the selected greeting type
 function updateGreeting(type) {
+    //looks up specified greeting type and passes it as argument inside []
     const greeting = greetings[type];
     
     if (greeting) {
+        //updates h2 text
         greetingMessage.textContent = greeting.message;
-        
+    
+        //changing the image src and alt 
         greetingImage.setAttribute("src", greeting.image);
         greetingImage.setAttribute("alt", greeting.alt);
         
@@ -74,7 +82,7 @@ function updateGreeting(type) {
     }
 }
 
-
+//these are so the buttons have a function to call onclick
 function setBirthdayGreeting() {
     updateGreeting("birthday");
 }
@@ -88,13 +96,16 @@ function setThankYouGreeting() {
 }
 
 function setRandomGreeting() {
+    //object.keys() takes all the keys from the greetings object and makes them into an array
     const types = Object.keys(greetings);
+    
     const randomType = types[Math.floor(Math.random() * types.length)];
     updateGreeting(randomType);
     console.log(`Random greeting selected: ${randomType}`);
 }
 
 function personalizeGreeting() {
+    //.value gets the text from input box
     const name = nameInput.value.trim();
     
     if (name === "") {
@@ -103,18 +114,19 @@ function personalizeGreeting() {
         return;
     }
     
-    
+    //making a new string with message and name
     const currentMessage = greetingMessage.textContent;
-    const personalizedMessage = `${currentMessage} \n\nTo:  ${name}`;
+    const personalizedMessage = `${currentMessage} \n\nDear ${name}!`;
     
+    //\n doesnt render in html so this swaps them for breaks
     greetingMessage.innerHTML = personalizedMessage.replace('\n\n', '<br><br>');
     
     console.log(`Personalized greeting for: ${name}`);
     console.log(`Full message: ${personalizedMessage}`);
     
+    
     nameInput.value = "";
 }
-
 document.getElementById("output").innerHTML = `
     <h3>DOM Manipulation Demo Loaded!</h3>
     <p>Successfully selected and ready to manipulate DOM elements</p>
@@ -122,8 +134,3 @@ document.getElementById("output").innerHTML = `
 `;
 
 console.log("Dynamic Greeting Card application loaded successfully!");
-
-
-
-
-
