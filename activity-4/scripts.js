@@ -6,10 +6,73 @@ let tasks = [];
 let taskIdCounter = 1;
 
 //Part A: Element creation demos
+console.log("\n---Element Creation Demonstrations---");
+
+const demoDiv = document.createElement("div");
+const demoSpan = document.createElement("span");
+const demoButton = document.createElement("button");
+
+console.log("Created div element: ", demoDiv);
+console.log("Created span element: ", demoSpan);
+console.log("Created button element: ", demoButton);
+
+//Setting properties
+demoDiv.textContent = "This is a demo div";
+demoDiv.id = "demo-div";
+demoSpan.innerHTML = "<strong>Demo span with HTML</strong>";
+demoButton.textContent = "Demo Button";
+
+console.log("Div after setting properties: ", demoDiv);
+console.log("Div textContent: ", demoDiv.textContent);
+console.log("Div id: ", demoDiv.id);
+
 
 //Part B: Element styling demos
+console.log("\n---Element Styling Demo---");
+
+//Direct style modification
+demoDiv.style.backgroundColor = "lightblue";
+demoDiv.style.padding = "10px";
+demoDiv.style.border = "1px solid blue";
+
+console.log("Applied direct styles to demo div");
+
+//Classlist demo
+demoDiv.classList.add("demo-class");
+demoDiv.classList.add("highlighted");
+console.log("Added classes. ClassList: ", demoDiv.classList);
+console.log("Has 'demo-class': ", demoDiv.classList.contains("demo-class"));
+
+demoDiv.classList.remove("highlighted");
+console.log("After removing 'highlighted': ", demoDiv.classList);
+
+demoDiv.classList.toggle("active");
+console.log("After toggling 'active': ", demoDiv.classList);
+
+//Add spacing
+demoSpan.style.marginTop = "10px";
+demoSpan.style.display = "block";
+demoButton.style.marginTop = "10px";
+demoButton.style.display = "block";
+
+console.log("Applied spacing styles to demo span and button");
+
 
 //Part C: Element appending demos
+console.log("\n---Element appending demo---");
+
+const outputDiv = document.getElementById("output");
+console.log("Output div before appending: ", outputDiv.children.length, "children");
+
+
+//Appending demo elements
+outputDiv.appendChild(demoDiv);
+outputDiv.appendChild(demoSpan);
+outputDiv.appendChild(demoButton);
+
+console.log("Output div after appending: ", outputDiv.children.length, "children");
+
+
 
 //Part D: To do list core functional
 console.log("\n---To-Do List Functionality---");
